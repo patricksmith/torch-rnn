@@ -34,13 +34,13 @@ server:start(function (request, response)
   local start = params.start
   print('starting with', start)
 
-  response:contentType('application/json')
+  -- response:contentType('application/json')
   if (start ~= nil) then
     opt.start_text = start
     opt.length = 100 + string.len(start)
     local sample = model:sample(opt)
-    response:write('{ "data": "' .. sample .. '" }')
+    response:contentType('application/json'):write('{ "data": "' .. sample .. '" }')
   else
-    response:write('Give me something to work with')
+    response:contentType('application/json'):write('{ "error": "Give me something to work with" }')
   end
 end)
