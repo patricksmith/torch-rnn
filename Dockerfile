@@ -27,10 +27,6 @@ ENV LD_LIBRARY_PATH=/root/torch/install/lib:$LD_LIBRARY_PATH
 ENV DYLD_LIBRARY_PATH=/root/torch/install/lib:$DYLD_LIBRARY_PATH
 ENV LUA_CPATH='/root/torch/install/lib/?.so;'$LUA_CPATH
 
-#torch-rnn and python requirements
-WORKDIR /root
-RUN git clone https://github.com/patricksmith/torch-rnn && \
-    pip install -r torch-rnn/requirements.txt
 
 #Lua requirements
 WORKDIR /root
@@ -46,7 +42,12 @@ RUN luarocks make hdf5-0-0.rockspec
 # Install deps for our webserver
 RUN luarocks install lzlib ZLIB_LIBDIR=/usr/lib/x86_64-linux-gnu/
 RUN luarocks install pegasus
-#Done!
-WORKDIR /root/torch-rnn
 
+#torch-rnn and python requirements
+WORKDIR /root
+RUN git clone https://github.com/patricksmith/torch-rnn && \
+    pip install -r torch-rnn/requirements.txt
+
+WORKDIR /root/torch-rnn
+COPY server.lua .
 CMD th server.lua -port $PORT
