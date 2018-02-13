@@ -3,6 +3,8 @@ require 'nn'
 
 require 'LanguageModel'
 
+require 'urldecode'
+
 local cmd = torch.CmdLine()
 cmd:option('-port', 9090)
 local server_opts = cmd:parse(arg)
@@ -32,7 +34,7 @@ server:start(function (request, response)
   print('path', request:path())
   local params = request:params()
   print('params', params)
-  local start = params.start
+  local start = decodeURI(params.start)
   print('starting with', start)
 
   response = response:statusCode(200):contentType('application/json')

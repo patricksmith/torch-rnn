@@ -48,6 +48,6 @@ WORKDIR /root
 RUN git clone https://github.com/patricksmith/torch-rnn && \
     pip install -r torch-rnn/requirements.txt
 
+COPY *.lua /root/torch-rnn/
 WORKDIR /root/torch-rnn
-COPY server.lua .
 CMD th server.lua -port $PORT
