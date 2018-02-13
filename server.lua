@@ -24,6 +24,7 @@ model:evaluate()
 local pegasus = require 'pegasus'
 local server = pegasus:new({
   port=server_opts.port,
+  location='/views/'
 })
 
 server:start(function (request, response)
@@ -34,13 +35,13 @@ server:start(function (request, response)
   local start = params.start
   print('starting with', start)
 
-  -- response:contentType('application/json')
+  response = response:statusCode(200):contentType('application/json')
   if (start ~= nil) then
     opt.start_text = start
     opt.length = 100 + string.len(start)
     local sample = model:sample(opt)
-    response:contentType('application/json'):write('{ "data": "' .. sample .. '" }')
+    response:write('{ "data": "' .. sample .. '" }')
   else
-    response:contentType('application/json'):write('{ "error": "Give me something to work with" }')
+    response:write('{ "error": "Give me something to work with" }')
   end
 end)
