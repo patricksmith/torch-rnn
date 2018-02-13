@@ -91,3 +91,16 @@ docker run -v ~/repos/tensor:/tensor/ --rm -ti crisbal/torch-rnn:base bash
 ```
 don't do `--rm`!
 
+
+time th train.lua -input_h5 /tensor/14m_hn_comments/mil_hn_comments.h5 -input_json /tensor/14m_hn_comments/mil_hn_comments.json -checkpoint_name /tensor/14m_hn_comments/cv/checkpoint -print_every 100 -checkpoint_every 20000 -gpu -1
+
+Epoch 15.94 / 50, i = 1520000 / 5086000, loss = 1.298337
+val_loss = 	1.2920747654109
+Epoch 15.94 / 50, i = 1520100 / 5086000, loss = 1.331591
+Epoch 15.94 / 50, i = 1520200 / 5086000, loss = 1.237331
+Epoch 15.95 / 50, i = 1520300 / 5086000, loss = 1.316258
+Epoch 15.95 / 50, i = 1520400 / 5086000, loss = 1.342800
+
+real	12676m25.094s
+user	17308m42.980s
+sys	7803m57.020s
