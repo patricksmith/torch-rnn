@@ -10,7 +10,7 @@ cmd:option('-port', 9090)
 local server_opts = cmd:parse(arg)
 
 local opt = {}
-opt.checkpoint = 'cv/checkpoint_20000.t7'
+opt.checkpoint = 'cv/checkpoint_1520000.t7'
 opt.length = 120
 opt.start_text = 'Read me from the query'
 opt.sample = 1

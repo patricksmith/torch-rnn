@@ -49,5 +49,6 @@ RUN git clone https://github.com/patricksmith/torch-rnn && \
     pip install -r torch-rnn/requirements.txt
 
 COPY *.lua /root/torch-rnn/
+COPY cv/* /root/torch-rnn/cv/
 WORKDIR /root/torch-rnn
 CMD th server.lua -port $PORT
